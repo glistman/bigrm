@@ -10,6 +10,9 @@ void deleteFile(char* directoryPath, char* fileName);
 
 int main(int c, char *argv[]){
 	char *directoryPath = argv[1];
+	if(directoryPath[strlen(directoryPath) - 1] != '/'){
+		strcat( directoryPath, "/");
+	}
 	printf("Directory:%s\n", directoryPath);
 	DIR *directory = opendir (directoryPath);
 	struct dirent *ent;
@@ -35,6 +38,6 @@ void deleteFile(char *directoryPath, char *fileName){
 	strcpy(file, directoryPath);
 	strcat(file, fileName);
 	int result = remove(file);
-	printf(">>>Remove filel:%s>>%d\n", file, 0);
+	printf(">>>Remove file:%s>>%d\n", file, result);
 	free(file);
 }
